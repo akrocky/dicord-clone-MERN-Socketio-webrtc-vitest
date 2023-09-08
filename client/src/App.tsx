@@ -10,6 +10,7 @@ import './App.css'
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import Dashboard from "./pages/Dashboard";
+import AlertNotification from "./components/AlertNotification";
 
 function App() {
  
@@ -26,6 +27,7 @@ function App() {
    {/* <Route path="/" element={<Home />} />
    <Route path="/admin/product" element={<AdminRoute component={ProductCreat} />} /> */}
    </Routes>
+   <AlertNotification  />
    </>
   )
 }
