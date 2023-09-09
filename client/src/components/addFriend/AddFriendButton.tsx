@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CustomPrimaryButton from "../../shared/CustomPrimaryButton";
+import CustomPrimaryButton from "../shared/CustomPrimaryButton";
 import AddFriendDialoge from "./AddFriendDialoge";
 
 const additionalStyles={

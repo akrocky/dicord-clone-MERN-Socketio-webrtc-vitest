@@ -1,9 +1,9 @@
 
 import { styled } from "styled-components"
-import AddFriendButton from "./AddFriendButton"
+import AddFriendButton from "../../addFriend/AddFriendButton"
 import FriendsTitle from "./FriendsTitle"
 import FriendsList from "./FriendsList"
-import PendingInvitationsList from "./PendingInvitationsList"
+import PendingInvitationsList from "../../pendingInvitation/PendingInvitationsList"
 
 const MainContainer = styled('div')({
   width:"224px",

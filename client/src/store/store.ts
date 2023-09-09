@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './slicers/auth/authSlice'
 import alertSlice from './slicers/alertSlice'
+import friendSlice from './slicers/friendSlice'
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    alert: alertSlice
+    alert: alertSlice,
+    friend:friendSlice
   }
 })
 

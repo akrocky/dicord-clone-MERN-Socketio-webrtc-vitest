@@ -16,7 +16,7 @@ const closeAlert=()=>{
   onClose={closeAlert}
  autoHideDuration={6000}
 >
-    <Alert severity="error">
+    <Alert severity={alertDetails.severity}>
      {alertDetails.message}
     </Alert>
 </Snackbar>

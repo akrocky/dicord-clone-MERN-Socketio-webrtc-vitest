@@ -51,6 +51,20 @@ export const loginApi = async(data)=>{
     
     }
 };
+export const sendFriendInvitaion = async(data)=>{
+
+    try {
+        return await apiClient.post("/api/friend-invitation/invite",data)
+        
+    } catch (exception){
+        checkResponseCode(exception);
+        return {
+            error: true,
+            exception
+        }
+    }
+
+}
 
 
 const checkResponseCode=(exception)=>{
@@ -59,3 +73,4 @@ const checkResponseCode=(exception)=>{
         (responseCode === 401 || responseCode === 403) && logout();
     }
 }
+

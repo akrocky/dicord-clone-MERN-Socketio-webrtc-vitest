@@ -16,7 +16,7 @@ export interface AlertState {
 const initialState: AlertState = {
     message: '',
     open: false,
-    severity: 'error'
+    severity: ''
 }
 
 export const alertSlice = createSlice({
