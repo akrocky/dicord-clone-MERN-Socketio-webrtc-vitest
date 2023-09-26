@@ -34,6 +34,7 @@ try {
 
      res.status(201).json({
         userDetails:{
+             id: user._id,
             mail: user.mail,
             token:token,
             username:user.username

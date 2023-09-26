@@ -30,9 +30,14 @@ export const friendSlice = createSlice({
     
       },
     setPendingInvitation: (state, action: PayloadAction) => {
+     
     
        state.pendingFriendsInvitations= action.payload.pendingFriendsInvitations;
     
+      },
+     
+      setRejectFriendInvitaion: (state, action: PayloadAction)=>{
+
       },
     setOnlineUsers: (state, action: PayloadAction) => {
     
@@ -44,6 +49,6 @@ export const friendSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
- export const {  setFriends,setPendingInvitation,setOnlineUsers} = friendSlice.actions
+ export const {  setFriends,setPendingInvitation,setOnlineUsers,setAcceptFriendInvitaion,setRejectFriendInvitaion} = friendSlice.actions
  export const selectFriend = (state: RootState) => state.friend;
 export default friendSlice.reducer;

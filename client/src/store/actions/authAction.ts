@@ -13,7 +13,7 @@ export const login =async (data:{
    
         const response= await Api.loginApi(data);
         if (response.error) {
-            dispatch(setAlertDetails({message:response.exception.response.data,open:true,severity:"Error",}))
+            dispatch(setAlertDetails({message:response?.exception?.response.data,open:true,severity:"error",}))
         } else {
             const userDetails=response.data;
           
@@ -33,7 +33,7 @@ export const register =async (userDetails:{
    
         const response= await Api.registerApi(userDetails);
         if (response.error) {
-            dispatch(setAlertDetails({message:response.exception.response.data,open:true,severity:"Error",}))
+            dispatch(setAlertDetails({message:response.exception.response.data,open:true,severity:"error",}))
            
         } else {
             const userDetails=response.data;

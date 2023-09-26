@@ -1,5 +1,6 @@
 import { styled } from "styled-components"
 import DropDrownMenu from "./DropDrownMenu"
+import ChoosenOptionLabel from "./ChoosenOptionLabel"
 
 const MainContainer = styled('div')({
 position:'absolute',
@@ -19,7 +20,7 @@ const AppBar = () => {
   return (
     
     <MainContainer>
-
+<ChoosenOptionLabel />
 <DropDrownMenu/>
     </MainContainer>
   )

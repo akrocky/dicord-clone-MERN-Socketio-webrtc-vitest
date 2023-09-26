@@ -1,5 +1,6 @@
 const User = require("../../models/user.model");
 const FriendInvitation= require("../../models/friendInvitation.model");
+const friendsUpdate = require('../../socketHandlers/updates/friends')
 const postInvite= async(req,res)=>{
   
     const {userId,mail}= req.user;
@@ -33,8 +34,16 @@ console.log(mail, targetMailAddress);
         return res.status(409).send(`friend already added.Please check friend list`);  
     }
 
-    // create new invitation 
-
+    // create new invitation  in databse 
+    const newInvitation= await FriendInvitation.create({
+        senderId: userId,
+        reciverId: targetUser._id
+    })
+     // if invitaion hasbeen successfully created we would like to update friend
+     // send pending invitaions update to specific user 
+     friendsUpdate.updateFriendsPendingInvitation(targetUser._id.toString());
+     return await res.status(201).send("Inviation has been sent");
+          
     
 };
 

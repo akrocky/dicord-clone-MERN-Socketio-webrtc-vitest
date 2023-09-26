@@ -65,6 +65,34 @@ export const sendFriendInvitaion = async(data)=>{
     }
 
 }
+export const acceptFriendInvitaionAPi = async(data)=>{
+
+    try {
+        return await apiClient.post("/api/friend-invitation/accept",data)
+        
+    } catch (exception){
+        checkResponseCode(exception);
+        return {
+            error: true,
+            exception
+        }
+    }
+
+}
+export const rejectFriendInvitaionApi = async(data)=>{
+
+    try {
+        return await apiClient.post("/api/friend-invitation/reject",data)
+        
+    } catch (exception){
+        checkResponseCode(exception);
+        return {
+            error: true,
+            exception
+        }
+    }
+
+}
 
 
 const checkResponseCode=(exception)=>{

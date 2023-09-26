@@ -1,23 +1,9 @@
 import { styled } from "@mui/material"
 import FriendListItem from "./FriendListItem"
+import { useAppSelector } from "../../../hooks/useStore"
+import { selectFriend } from "../../../store/slicers/friendSlice"
 
-const Dummy_Frirend=[
-  {
-    id:1,
-  username:'Mark',
-  isOnline: true
-},
-{
-  id:2,
-username:'Jörg',
-isOnline: false
-},
-{
-  id:3,
-username:'Anna',
-isOnline: false
-},
-]
+
 
 const MainContainer=styled('div')({
     flexGrow:1,
@@ -25,10 +11,29 @@ const MainContainer=styled('div')({
 })
 
 const FriendsList = () => {
+  const friendSlice= useAppSelector(selectFriend);
+ 
+
+   const checkOnlineUsers=(friends,onlineUsers)=>{
+   const friendsWithIsonline=[];
+     friends.forEach((f)=>{
+     
+      const isUserOnline= onlineUsers.find((user) => user.userId.toString() == f.id.toString());
+
+
+     
+   const isOnline= isUserOnline ? true : false ;
+   friendsWithIsonline.push({...f,isOnline})
+
+      
+      
+     });
+     return friendsWithIsonline;
+   }
   return (
     <MainContainer>
         {
-          Dummy_Frirend.map(f=>(
+   friendSlice.firends.length > 0 &&      checkOnlineUsers(friendSlice.firends,friendSlice.onlineUsers).map(f=>(
             <FriendListItem
             key={f.id}
             id={f.id}

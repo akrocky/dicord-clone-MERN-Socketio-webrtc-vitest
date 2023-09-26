@@ -10,7 +10,7 @@ const AvatarPreview=styled('div')({
     alignItems:'center',
     fontSize:'20px',
     fontWeight: '700',
-    marginLeft:'5px',
+  
     color:'white'
 })
 

@@ -5,6 +5,8 @@ import MenuItem from '@mui/material/MenuItem';
 import { IconButton } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
 import { logout } from '../../../functions/authUtils';
+import { useAppDispatch, useAppSelector } from '../../../hooks/useStore';
+import { selectRoom, setAudioOnly } from '../../../store/slicers/roomSlice';
 
 export default function DropDrownMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -12,10 +14,14 @@ export default function DropDrownMenu() {
   const handleMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
+  const {audioOnly} =useAppSelector(selectRoom);
+  const dispatch=useAppDispatch();
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
-
+const handleAuioOnlyChange=()=>{
+dispatch(setAudioOnly({audioOnly : !audioOnly}))
+}
   return (
     <div>
       <IconButton
@@ -38,6 +44,10 @@ export default function DropDrownMenu() {
         }}
       >
         <MenuItem onClick={logout}>Logout</MenuItem>
+        <MenuItem onClick={handleAuioOnlyChange}>
+
+          {audioOnly ? 'Audio Only Enabled': 'Audio Only Disabled' }
+        </MenuItem>
         
       </Menu>
     </div>

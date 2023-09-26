@@ -1,22 +1,9 @@
 import { styled } from "@mui/material"
 import PendingInvitaionListItem from "./PendingInvitaionListItem";
+import { useAppSelector } from "../../hooks/useStore";
+import { selectFriend } from "../../store/slicers/friendSlice";
 
-const DUMMY_INVITATIONS = [
-{
-  _id : '1',
-  senderId : {
-    username: 'Mark',
-    mail:'mark@hh.co'
-  }
-},
-{
-  _id : '2',
-  senderId : {
-    username: 'John',
-    mail:'john@jj.ce'
-  }
-}
-];
+
 
 const MainContainer=styled('div')({
     width:'100%',
@@ -28,17 +15,23 @@ const MainContainer=styled('div')({
 })
 
 const PendingInvitationsList = () => {
+  const friendSlice= useAppSelector(selectFriend);
+ 
+
   return (
     <MainContainer>
 {
-  DUMMY_INVITATIONS.map(invitaion =>(
+  friendSlice.pendingFriendsInvitations && (   
+    friendSlice.pendingFriendsInvitations.map(invitaion =>(
     <PendingInvitaionListItem 
-  key={invitaion._id}
+  key={invitaion.senderId
+.    _id}
   id={invitaion._id}
   username={invitaion.senderId.username}
   mail={invitaion.senderId.mail}
     />
   ))
+  )
 }
     </MainContainer>
   )

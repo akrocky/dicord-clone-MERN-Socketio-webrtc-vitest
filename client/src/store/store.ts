@@ -2,13 +2,22 @@ import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './slicers/auth/authSlice'
 import alertSlice from './slicers/alertSlice'
 import friendSlice from './slicers/friendSlice'
+import chatSlice from './slicers/chatSlice'
+import roomSlice from './slicers/roomSlice'
+
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     alert: alertSlice,
-    friend:friendSlice
-  }
+    friend:friendSlice,
+    chat: chatSlice,
+    room: roomSlice
+  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    })
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

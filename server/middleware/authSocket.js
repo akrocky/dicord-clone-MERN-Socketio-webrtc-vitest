@@ -12,7 +12,7 @@
         socket.user=decoded;
     } catch (error) {
         const socketError = new Error('NOT_AUTHORIZE')
-        return next(socket);
+        return next(socketError);
     }
     next();
  }
