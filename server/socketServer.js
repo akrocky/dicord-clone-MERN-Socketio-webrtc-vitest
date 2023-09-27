@@ -7,6 +7,8 @@
  const roomCreateHandler =require('./socketHandlers/roomCreate');
  const roomjoinHandler =require('./socketHandlers/roomjoinHandler');
  const roomleaveHandler =require('./socketHandlers/roomleaveHandler');
+ const roomInitializeConnectionHandler =require('./socketHandlers/roomInitializeConnectionHandler');
+const roomSignalingDataHandler = require('./socketHandlers/roomSignalingDataHandler');
  const registerSocketServer=(server)=>{
     const io=require=require('socket.io')(server,{
         cors:{
@@ -52,6 +54,13 @@ serverStore.setSocketServerInstance(io);
        socket.on('room-leave',(data)=>{
         roomleaveHandler(socket,data);
        });
+       socket.on('connection-init',(data)=>{
+        roomInitializeConnectionHandler(socket,data);
+       });
+       socket.on('connection-signal',(data)=>{
+        roomSignalingDataHandler(socket,data);
+       });
+
 
        socket.on('disconnect',()=>{
          disconnectHandler(socket);

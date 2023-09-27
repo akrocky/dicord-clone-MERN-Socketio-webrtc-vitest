@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import { setFriends, setOnlineUsers, setPendingInvitation } from '../../store/slicers/friendSlice';
 import { updateDirectChatHistoryIfActive } from '../../utils/chat';
 import { newRoomCreated ,updateActiveRooms} from './roomHandler';
+import { handleSingalingData, prepareNewPeerConnection } from './webrtcHandler';
 
 
 
@@ -52,8 +53,18 @@ console.log('successsfully connected with socket.io server');
         updateActiveRooms(data)
     });
     socket.on('connection-prepare',(data)=>{
-        console.log("connection prepareeeeeee");
-       console.log(data);
+        const {connUserSocketId}= data;
+   
+       prepareNewPeerConnection(connUserSocketId,false);
+       socket.emit('connection-init',{connUserSocketId})
+    });
+    socket.on('connection-init',(data)=>{
+        const {connUserSocketId}=data;
+        prepareNewPeerConnection(connUserSocketId,true);
+    })
+    socket.on('connection-signal',(data)=>{
+        handleSingalingData(data);
+        
     })
 
 
@@ -77,4 +88,7 @@ export const joinRoom=(data)=>{
 
 export const leaveRoom=(data)=>{
     socket.emit('room-leave',data)
+};
+export const signalPeerData=(data)=>{
+     socket.emit('connection-signal',data)
 }
