@@ -65,7 +65,12 @@ onlineUsers.push({socketId:key,userId:value.userId});
  };
  const getActiveRoom=(roomId)=>{
    const activeRoom= activeRooms.find(room=> room.roomId=== roomId);
-   return {...activeRoom}
+   if (activeRoom) {
+      return {...activeRoom}
+   }else{
+      return null;
+   }
+  
  }
  const leaveActiveRoom=(roomId, participantsocketId)=>{
    const activeRoom= activeRooms.find(room=> room.roomId=== roomId);
@@ -87,7 +92,7 @@ onlineUsers.push({socketId:key,userId:value.userId});
   activeRooms= activeRooms.filter((room)=> room.roomId !== roomId);
   const updatedRoom={
    ...room,
-   participants:[...room.participants,newParticpant]
+   participants: room.participants ?  [...room.participants,newParticpant]:[newParticpant]
   }
 activeRooms.push(updatedRoom);
 

@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import { setFriends, setOnlineUsers, setPendingInvitation } from '../../store/slicers/friendSlice';
 import { updateDirectChatHistoryIfActive } from '../../utils/chat';
 import { newRoomCreated ,updateActiveRooms} from './roomHandler';
-import { handleSingalingData, prepareNewPeerConnection } from './webrtcHandler';
+import { handleParticipantLeftRoom, handleSingalingData, prepareNewPeerConnection } from './webrtcHandler';
 
 
 
@@ -65,6 +65,11 @@ console.log('successsfully connected with socket.io server');
     socket.on('connection-signal',(data)=>{
         handleSingalingData(data);
         
+    })
+    socket.on('room-participant-left',(data)=>{
+      
+        console.log('user left room');
+        handleParticipantLeftRoom(data);
     })
 
 

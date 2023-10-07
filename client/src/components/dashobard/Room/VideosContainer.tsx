@@ -11,10 +11,17 @@ flexWrap:'wrap'
 });
 
 const VideosContainer = () => {
-  const {localStream}=useAppSelector(selectRoom)
+  const {localStream,remoteStreams,screenSharingStream}=useAppSelector(selectRoom);
+  
   return (
    <MainContainer>
-  <Video stream={localStream} isLocalStream={true}/>
+  <Video stream={screenSharingStream ? screenSharingStream :localStream} isLocalStream={true}/>
+  {
+  remoteStreams && remoteStreams.map((remoteStream)=>(
+    <Video key={remoteStream.connUserSocketId} stream={remoteStream} isLocalStream={false}/>
+  ))
+
+  }
    </MainContainer>
   )
 }

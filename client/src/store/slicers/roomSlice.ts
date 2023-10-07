@@ -12,10 +12,11 @@ const initialState= {
    roomDetails: null,
    activeRooms: [],
    localStream: null,
-   remoteStream:[],
+   remoteStreams:[],
    audioOnly: false,
    screenSharingStream: null,
-   isSreenSharingActive: false
+   isSreenSharingActive: false,
+   isUserJoinedWithOnlyWithAudio: false,
 }
 
 export const roomSlice = createSlice({
@@ -42,7 +43,7 @@ state.activeRooms=action.payload.activeRooms;
       },
     setRemoteStreams: (state, action: PayloadAction) => {
     
-state.remoteStream=action.payload.remoteStream
+state.remoteStreams=action.payload.remoteStreams
       },
     setAudioOnly: (state, action: PayloadAction) => {
     
@@ -50,6 +51,12 @@ state.audioOnly=action.payload.audioOnly
       },
     setShareScreenStream: (state, action: PayloadAction) => {
     
+state.screenSharingStream= action.payload.screenSharingStream;
+state.isSreenSharingActive= action.payload.isSreenSharingActive;
+      },
+    setIsUserJoinedWithOnlyWithAudio: (state, action: PayloadAction) => {
+    
+state.isUserJoinedWithOnlyWithAudio= action.payload.isUserJoinedWithOnlyWithAudio;
 
       },
    
@@ -58,7 +65,7 @@ state.audioOnly=action.payload.audioOnly
 })
 
 // Action creators are generated for each case reducer function
- export const {setOpenRoom, setActiveRooms,setRoomDetails,setLocalstream,setRemoteStreams,setShareScreenStream,setAudioOnly  } = roomSlice.actions
+ export const {setOpenRoom, setActiveRooms,setRoomDetails,setLocalstream,setRemoteStreams,setShareScreenStream,setAudioOnly ,setIsUserJoinedWithOnlyWithAudio } = roomSlice.actions
  export const selectRoom= (state: RootState) => state.room;
  export const selectState=(state: RootState) => state;
 export default roomSlice.reducer;

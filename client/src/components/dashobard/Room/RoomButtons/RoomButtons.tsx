@@ -3,6 +3,8 @@ import ScreenShareButton from "./ScreenShareButton"
 import CameraButton from "./CameraButton"
 import CloseRoomButton from "./CloseRoomButton"
 import MicButton from "./MicButton"
+import { useAppSelector } from "../../../../hooks/useStore"
+import { selectRoom } from "../../../../store/slicers/roomSlice"
 
 const MainContainer= styled('div')({
     height:'15%',
@@ -15,12 +17,13 @@ const MainContainer= styled('div')({
 })
 
 const RoomButtons = () => {
+  const {isUserJoinedWithOnlyWithAudio}= useAppSelector(selectRoom)
   return (
     <MainContainer>
-      <ScreenShareButton/>
+ { !isUserJoinedWithOnlyWithAudio &&    <ScreenShareButton/>}
       <MicButton/>
       <CloseRoomButton/>
-      <CameraButton/>
+    {!isUserJoinedWithOnlyWithAudio &&    <CameraButton/>}
         
     </MainContainer>
   )
